@@ -1,35 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 struct node
 {
   int val;
-  struct node *next;
+  struct node* next;
 };
 
 struct linked_list
 {
-  struct node *head;
+  struct node* head;
   int lenght;
 };
 
-void print_elements(struct linked_list *list)
+struct node* initialize_node(int value)
+{
+  struct node* new_node = (struct node*)malloc(sizeof(struct node));
+
+  new_node->val  = value;
+  new_node->next = NULL;
+
+  return new_node;
+}
+
+struct linked_list* initialize_list()
+{
+  struct linked_list* new_list = (struct linked_list*) malloc(sizeof(struct linked_list));
+
+  new_list->head = NULL;
+  new_list->lenght = 0;
+
+  return new_list;
+}
+
+void print_elements(struct linked_list* list)
 {
   if(list->head != NULL)
   {
-    struct node *aux = list->head;
+    struct node* aux = list->head;
 
     printf("[");
 
     do
     {
-        printf("%d\n", aux->val);
-        printf(", ");
+      printf("%d", aux->val);
+      aux = aux->next;
 
-        aux = aux->next;
+      if(aux != NULL)
+      {
+        printf(", ");
+      }
     } while (aux != NULL);
 
-    printf("]");
+    printf("]\n");
   }
   else
   {
@@ -37,33 +61,56 @@ void print_elements(struct linked_list *list)
   }
 }
 
-void insert_element_at_end(struct linked_list *list, int value)
+void insert_element_at_end(struct linked_list* list, int value)
+{
+  struct node* new_node = initialize_node(value);
+
+  if(list->head == NULL)
+  {
+    list->head = new_node;
+  }
+  else
+  {
+    struct node* aux = list->head;
+
+    while(aux->next != NULL)
+    {
+      aux = aux->next;
+    }
+
+    aux->next = new_node;
+    list->lenght++;
+  }
+}
+
+void insert_element_at_start(struct linked_list *list, int value)//@audit
 {
 
 }
 
-void insert_element_at_start(struct linked_list *list, int value)
+void insert_element_in_position(struct linked_list *list, int value, int position)//@audit
 {
 
 }
 
-void insert_element_in_position(struct linked_list *list, int value, int position)
+void get_element(struct linked_list *list, int position)//@audit
 {
 
 }
 
-void get_element(struct linked_list *list, int position)
-{
-
-}
-
-void remove_element_in_position(struct linked_list *list, int position)
+void remove_element_in_position(struct linked_list *list, int position)//@audit
 {
 
 }
 
 int main()
 {
+  struct linked_list* list = initialize_list();
+
+  insert_element_at_end(list, 2);
+  insert_element_at_end(list, 3);
+
+  print_elements(list);
 
   return 0;
 };
