@@ -83,14 +83,24 @@ void insert_element_at_end(struct linked_list* list, int value)
   }
 }
 
-void insert_element_at_start(struct linked_list *list, int value)//@audit
+void insert_element_at_start(struct linked_list *list, int value)
 {
+  struct node* new_node = initialize_node(value);
 
+  new_node->next = list->head;
+  list->head = new_node;
 }
 
 void insert_element_in_position(struct linked_list *list, int value, int position)//@audit
 {
-
+  if(position >= 0 && position <= list->lenght - 1)
+  {
+    while (/* condition */)
+    {
+      /* code */
+    }
+    
+  }
 }
 
 void get_element(struct linked_list *list, int position)//@audit
@@ -109,6 +119,10 @@ int main()
 
   insert_element_at_end(list, 2);
   insert_element_at_end(list, 3);
+
+  print_elements(list);
+
+  insert_element_at_start(list, 1);
 
   print_elements(list);
 
