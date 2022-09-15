@@ -95,7 +95,7 @@ void insert_element_at_start(struct linked_list *list, int value)
   list->lenght++;
 }
 
-void insert_element_in_position(struct linked_list *list, int value, int position)//@audit
+void insert_element_in_position(struct linked_list *list, int value, int position)
 {
   if(position >= 0 && position < list->lenght)
   {
@@ -114,14 +114,45 @@ void insert_element_in_position(struct linked_list *list, int value, int positio
   }
 }
 
-void get_element(struct linked_list *list, int position)//@audit
+int get_element(struct linked_list *list, int position)
 {
+  if(position >= 0 && position < list->lenght)
+  {
+    struct node *new_node = list->head;
 
+    for (int i = 0; i < position; i++)
+    {
+      new_node = new_node->next;
+    }
+    
+    return new_node->val;
+  }
 }
 
-void remove_element_in_position(struct linked_list *list, int position)//@audit
+void remove_element_in_position(struct linked_list *list, int position)
 {
+  if(position >= 0 && position < list->lenght)
+  {
 
+    if(position == 0)
+    {
+      list->head = list->head->next;
+    }
+    else
+    {
+      struct node* curr = list->head, *prev;
+      prev = curr;
+
+      for (int i = 0; i < position; i++)
+      {
+        prev = curr;
+        curr = curr->next;
+      }
+      prev->next = curr->next;
+
+      list->lenght--;
+    }
+  }
 }
 
 int main()
@@ -138,6 +169,12 @@ int main()
   print_elements(list);
 
   insert_element_in_position(list, 7, 1);
+
+  print_elements(list);
+
+  printf("%d", get_element(list, 0));
+
+  remove_element_in_position(list, 3);
 
   print_elements(list);
 
