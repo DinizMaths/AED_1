@@ -80,8 +80,9 @@ void insert_element_at_end(struct linked_list* list, int value)
 
     aux->next = new_node;
 
-    list->lenght++;
   }
+
+  list->lenght++;
 }
 
 void insert_element_at_start(struct linked_list *list, int value)
@@ -90,22 +91,24 @@ void insert_element_at_start(struct linked_list *list, int value)
 
   new_node->next = list->head;
   list->head     = new_node;
+
+  list->lenght++;
 }
 
 void insert_element_in_position(struct linked_list *list, int value, int position)//@audit
 {
   if(position >= 0 && position < list->lenght)
   {
-    struct node* new_node = initialize_node(value), *aux;
-    new_node = list->head;
+    struct node* new_node = initialize_node(value), *prev, *curr;
+    curr = list->head;
 
     for (int i = 0; i < position; i++)
     {
-      aux = new_node;
-      new_node = new_node->next;
+      prev = curr;
+      curr = curr->next;
     }
-    new_node->next = new_node;
-    aux->next = new_node;
+    new_node->next = curr;
+    prev->next = new_node;
 
     list->lenght++;
   }
@@ -134,7 +137,7 @@ int main()
 
   print_elements(list);
 
-  insert_element_in_position(list, 7, 2);
+  insert_element_in_position(list, 7, 1);
 
   print_elements(list);
 
