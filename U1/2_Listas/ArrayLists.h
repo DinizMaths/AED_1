@@ -97,12 +97,24 @@ int get_element(struct array_list *list, int position)
 
 void print_elements(struct array_list *list)
 {
-  int lenght = list->lenght;
-
-  printf("Elementos:\n");
-  for(int i = 0; i < lenght; i++)
+  if(list->lenght != 0)
   {
-    printf("%d", get_element(list, i));
-    printf("\n");
+    printf("[");
+
+    for(int i = 0; i < list->lenght; i++)
+    {
+      printf("%d", list->vector[i]);
+
+      if(i != list->lenght - 1)
+      {
+        printf(", ");
+      }
+    }
+
+    printf("]\n");
+  }
+  else
+  {
+    printf("A lista está vaiza");
   }
 }
