@@ -133,7 +133,6 @@ void remove_element_in_position(struct linked_list *list, int position)
 {
   if(position >= 0 && position < list->lenght)
   {
-
     if(position == 0)
     {
       list->head = list->head->next;
@@ -148,8 +147,10 @@ void remove_element_in_position(struct linked_list *list, int position)
         prev = curr;
         curr = curr->next;
       }
+
       prev->next = curr->next;
 
+      free(curr);
       list->lenght--;
     }
   }
@@ -172,7 +173,7 @@ int main()
 
   print_elements(list);
 
-  printf("%d", get_element(list, 0));
+  printf("%d\n", get_element(list, 0));
 
   remove_element_in_position(list, 3);
 

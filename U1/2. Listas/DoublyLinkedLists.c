@@ -67,7 +67,7 @@ void print_elements(struct doubly_linked_list* list)
 
 void insert_element_at_end(struct doubly_linked_list* list, int value)
 {
-  struct node* new_node = initialize_node(value);
+  struct node *new_node = initialize_node(value);
 
   if(list->head == NULL)
   {
@@ -86,7 +86,7 @@ void insert_element_at_end(struct doubly_linked_list* list, int value)
 
 void insert_element_at_start(struct doubly_linked_list *list, int value)
 {
-  struct node* new_node = initialize_node(value);
+  struct node *new_node = initialize_node(value);
 
   new_node->next = list->head;
   list->head     = new_node;
@@ -94,11 +94,11 @@ void insert_element_at_start(struct doubly_linked_list *list, int value)
   list->lenght++;
 }
 
-void insert_element_in_position(struct doubly_linked_list *list, int value, int position)@audit
+void insert_element_in_position(struct doubly_linked_list *list, int value, int position)
 {
   if(position >= 0 && position < list->lenght)
   {
-    struct node* new_node = initialize_node(value), *prev, *curr;
+    struct node *new_node = initialize_node(value), *prev, *curr;
     curr = list->head;
 
     for (int i = 0; i < position; i++)
@@ -106,14 +106,18 @@ void insert_element_in_position(struct doubly_linked_list *list, int value, int 
       prev = curr;
       curr = curr->next;
     }
+
+    curr->previous = new_node;
     new_node->next = curr;
+
     prev->next = new_node;
+    new_node->previous = prev;
 
     list->lenght++;
   }
 }
 
-int get_element(struct doubly_linked_list *list, int position)@audit
+int get_element(struct doubly_linked_list *list, int position)
 {
   if(position >= 0 && position < list->lenght)
   {
@@ -128,11 +132,10 @@ int get_element(struct doubly_linked_list *list, int position)@audit
   }
 }
 
-void remove_element_in_position(struct doubly_linked_list *list, int position)@audit
+void remove_element_in_position(struct doubly_linked_list *list, int position)//@audit
 {
   if(position >= 0 && position < list->lenght)
   {
-
     if(position == 0)
     {
       list->head = list->head->next;
@@ -147,8 +150,15 @@ void remove_element_in_position(struct doubly_linked_list *list, int position)@a
         prev = curr;
         curr = curr->next;
       }
+
+      if(curr->next != NULL)
+      {
+        curr->next->previous = curr->previous;
+      }
+
       prev->next = curr->next;
 
+      free(curr);
       list->lenght--;
     }
   }
@@ -167,15 +177,15 @@ int main()
 
   print_elements(list);
 
-  // insert_element_in_position(list, 7, 1);
+  insert_element_in_position(list, 7, 1);
 
-  // print_elements(list);
+  print_elements(list);
 
-  // printf("%d", get_element(list, 0));
+  printf("%d\n", get_element(list, 0));
 
-  // remove_element_in_position(list, 3);
+  remove_element_in_position(list, 3);
 
-  // print_elements(list);
+  print_elements(list);
 
   return 0;
 };
