@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include "../../U1/2_Listas/ArrayLists.h"
 
+typedef int bool;
 
-int binary_search(struct array_list *list, int value)
+int binary_search(struct array_list *list, int value, bool find_position)
 {
   int start = 0;
   int end   = list->lenght - 1;
@@ -15,10 +16,19 @@ int binary_search(struct array_list *list, int value)
 
     if(value == list->vector[half])
     {
-      return 1;
+      if(find_position)
+      {
+        printf("Nova Posicao: ");
+
+        return half + 1;
+      }
+      else
+      {
+        return 1;
+      }
     }
     else if(value > list->vector[half])
-    {;
+    {
       start = half + 1;
     }
     else
@@ -27,5 +37,24 @@ int binary_search(struct array_list *list, int value)
     }
   }
 
-  return 0;
+  if(find_position)//@audit
+  {
+    if(value > list->vector[half])
+    {
+      printf("Nova Posicao: ");
+
+      return half + 1;
+    }
+    else
+    {
+      printf("Nova Posicao: ");
+
+      return half - 1;
+    }
+  }
+  else
+  {
+    return 0;
+  }
 }
+

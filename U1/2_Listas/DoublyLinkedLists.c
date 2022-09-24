@@ -19,7 +19,7 @@ int main()
 
   printf("%d\n", get_element(list, 0));
 
-  remove_element_in_position(list, 3);
+  remove_element_in_position(list, 2);
 
   print_elements(list);
 

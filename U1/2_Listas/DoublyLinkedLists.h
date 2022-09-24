@@ -132,31 +132,39 @@ int get_element(struct doubly_linked_list *list, int position)
   }
 }
 
-void remove_element_in_position(struct doubly_linked_list *list, int position)//@audit
+void remove_element_in_position(struct doubly_linked_list *list, int position)
 {
   if(position >= 0 && position < list->lenght)
   {
+    struct node *temp;
+
     if(position == 0)
     {
+      temp = list->head;
       list->head = list->head->next;
+      list->head->previous = NULL;
+
+      free(temp);
+    }
+    else if(position == list->lenght - 1)
+    {
+      temp = list->tail;
+      list->tail = list->tail->previous;
+      list->tail->next = NULL;
+
+      free(temp);
     }
     else
     {
-      struct node* curr = list->head, *prev;
-      prev = curr;
+      struct node* curr = list->head;
 
       for (int i = 0; i < position; i++)
       {
-        prev = curr;
         curr = curr->next;
       }
 
-      if(curr->next != NULL)
-      {
-        curr->next->previous = curr->previous;
-      }
-
-      prev->next = curr->next;
+      curr->next->previous = curr->previous;
+      curr->previous->next = curr->next;
 
       free(curr);
       list->lenght--;
