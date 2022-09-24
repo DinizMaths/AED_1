@@ -61,7 +61,7 @@ void print_elements(struct doubly_linked_list* list)
   }
   else
   {
-    printf("A lista está vaiza");
+    printf("A lista está vazia\n");
   }
 }
 

@@ -42,9 +42,12 @@ void pop(struct array_stack *stack)
 
 int top(struct array_stack *stack)
 {
-  int top_position = stack->lenght - 1;
+  if(stack->lenght != 0)
+  {
+    int top_position = stack->lenght - 1;
 
-  return stack->vector[top_position];
+    return stack->vector[top_position];
+  }
 }
 
 int len(struct array_stack *stack)
@@ -77,6 +80,6 @@ void print_elements(struct array_stack *stack)
   }
   else
   {
-    printf("A lista está vaiza\n");
+    printf("A lista está vazia\n");
   }
 }
