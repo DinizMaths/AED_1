@@ -125,6 +125,6 @@ void print_elements(struct linked_stack* stack)
   }
   else
   {
-    printf("A lista está vazia\n");
+    printf("A pilha está vazia\n");
   }
 }
