@@ -115,6 +115,6 @@ void print_elements(struct array_list *list)
   }
   else
   {
-    printf("A lista está vaiza");
+    printf("A lista está vaiza\n");
   }
 }

@@ -23,5 +23,9 @@ int main()
 
   print_elements(list);
 
+  insert_element_at_end(list, 5);
+
+  print_elements(list);
+
   return 0;
 };

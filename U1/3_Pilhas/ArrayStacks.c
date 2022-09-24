@@ -10,17 +10,17 @@ int main()
 
   print_elements(stack);
 
-  printf("%d", top(stack));
+  printf("%d\n", top(stack));
 
   pop(stack);
   pop(stack);
 
   print_elements(stack);
 
-  printf("%d", empty(stack));
-  printf("%d", len(stack));
+  printf("%d\n", empty(stack));
+  printf("%d\n", len(stack));
 
-  printf("%d", top(stack));
+  printf("%d\n", top(stack));
 
   pop(stack);
   print_elements(stack);
