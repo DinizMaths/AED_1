@@ -2,7 +2,9 @@
 
 int main()
 {
-  struct array_queue queue = initialize(2);
+  struct array_queue *queue = initialize(2);
+
+  
 
   return 0;
 }

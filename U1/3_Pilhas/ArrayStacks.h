@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+typedef int bool;
 struct array_stack
 {
   int *vector;
@@ -55,7 +57,7 @@ int len(struct array_stack *stack)
   return stack->lenght;
 }
 
-int empty(struct array_stack *stack)
+bool empty(struct array_stack *stack)
 {
   return stack->lenght == 0;
 }
