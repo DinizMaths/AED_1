@@ -12,14 +12,17 @@ int main()
 
   print_elements(list);
 
-  printf("%d\n", binary_search(list,  2, 0));
-  printf("%d\n", binary_search(list, 20, 0));
-  printf("%d\n", binary_search(list, 11, 0));
-  printf("%d\n", binary_search(list, 30, 0));
+  printf("%d\n", binary_search(list,  2));
+  printf("%d\n", binary_search(list, 20));
+  printf("%d\n", binary_search(list, 11));
+  printf("%d\n", binary_search(list, 30));
+  printf("%d\n", binary_search(list,  9));
 
-  printf("%d\n", binary_search(list, 11, 1));
-  printf("%d\n", binary_search(list, 30, 1));
-  printf("%d\n", binary_search(list,  9, 1));
+  printf("%d\n", new_position(list,  11));
+  printf("%d\n", new_position(list,   3));
+  printf("%d\n", new_position(list,   5));
+  printf("%d\n", new_position(list,   1));
+  printf("%d\n", new_position(list,  30));
 
   return 0;
 }

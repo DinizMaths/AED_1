@@ -4,57 +4,66 @@
 
 typedef int bool;
 
-int binary_search(struct array_list *list, int value, bool find_position)
+int binary_search(struct array_list *list, int value)
 {
   int start = 0;
   int end   = list->lenght - 1;
-  int half;
 
   while(start <= end)
   {
-    half = (start + end) / 2;
+    int middle       = (start + end) / 2;
+    int middle_value = list->vector[middle];
 
-    if(value == list->vector[half])
+    if(value == middle_value)
     {
-      if(find_position)
-      {
-        printf("Nova Posicao: ");
-
-        return half + 1;
-      }
-      else
-      {
-        return 1;
-      }
+      return middle;
     }
-    else if(value > list->vector[half])
+    else if(value > middle_value)
     {
-      start = half + 1;
+      start = middle + 1;
     }
-    else
-    {
-      end = half - 1;
+    else{
+      end = middle - 1;
     }
   }
 
-  if(find_position)//@audit
+  return -1;
+}
+
+int new_position(struct array_list *list, int value)
+{
+  if(binary_search(list, value) == -1)
   {
-    if(value > list->vector[half])
-    {
-      printf("Nova Posicao: ");
+    int start = 0;
+    int end   = list->lenght - 1;
 
-      return half + 1;
-    }
-    else
+    while(start <= end)
     {
-      printf("Nova Posicao: ");
+      int start_value  = list->vector[start];
+      int end_value    = list->vector[end];
+      
+      int middle       = (start + end) / 2;
+      int middle_value = list->vector[middle];
 
-      return half - 1;
+      if(value < start_value)
+      {
+        return start;
+      }
+      else if(value > end_value)
+      {
+        return end + 1;
+      }
+      else if(value > middle_value)
+      {
+        start = middle + 1;
+      }
+      else{
+        end = middle - 1;
+      }
     }
   }
   else
   {
-    return 0;
+    return binary_search(list, value) + 1;
   }
 }
-
