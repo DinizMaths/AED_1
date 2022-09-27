@@ -118,3 +118,18 @@ void print_elements(struct array_list *list)
     printf("A lista está vazia\n");
   }
 }
+
+void reverse(struct array_list *list)
+{
+  int j = list->lenght - 1;
+  int middle = list->lenght / 2;
+  int aux;
+
+  for(int i = 0; i < middle; i++)
+  {
+    aux = list->vector[i];
+    list->vector[i] = list->vector[j];
+    list->vector[j] = aux;
+    j--;
+  }
+}

@@ -154,3 +154,21 @@ void remove_element_in_position(struct linked_list *list, int position)
     }
   }
 }
+
+void reverse(struct linked_list *list)
+{
+  struct node *prev = NULL;
+  struct node *curr = list->head;
+  struct node *next = NULL;
+
+  while (curr != NULL) 
+  {
+      next = curr->next;
+      curr->next = prev;
+
+      prev = curr;
+      curr = next;
+  }
+
+  list->head = prev;
+}

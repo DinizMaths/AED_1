@@ -171,3 +171,22 @@ void remove_element_in_position(struct doubly_linked_list *list, int position)
     }
   }
 }
+
+void reverse(struct doubly_linked_list *list)
+{
+  struct node *temp;
+  struct node *curr = list->head;
+
+  while(curr != NULL)
+  {
+    temp = curr->previous;
+    curr->previous = curr->next;
+    curr->next = temp;
+    curr = curr->previous;
+  }
+
+  if(temp != NULL)
+  {
+    list->head = temp->previous;
+  }
+}

@@ -21,5 +21,9 @@ int main()
 
   print_elements(arr);
 
+  reverse(arr);
+
+  print_elements(arr);
+
   return 0;
 };

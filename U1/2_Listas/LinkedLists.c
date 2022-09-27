@@ -23,5 +23,9 @@ int main()
 
   print_elements(list);
 
+  reverse(list);
+
+  print_elements(list);
+
   return 0;
 };
