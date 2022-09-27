@@ -171,7 +171,7 @@ void remove_element_in_position(struct doubly_linked_list *list, int position)
   }
 }
 
-void reverse(struct doubly_linked_list *list) 
+void reverse(struct doubly_linked_list *list)//@audit
 {
   struct node *temp;
   struct node *curr = list->head;
