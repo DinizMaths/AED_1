@@ -1,35 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 struct node
 {
-  struct node* previous;
+  struct node *previous;
   int val;
-  struct node* next;
+  struct node *next;
 };
- 
+
 struct doubly_linked_list
 {
-  struct node* head;
-  struct node* tail;
+  struct node *head;
+  struct node *tail;
   int lenght;
 };
 
-struct node* initialize_node(int value)
+struct node *initialize_node(int value)
 {
-  struct node* new_node = (struct node*)malloc(sizeof(struct node));
+  struct node *new_node = (struct node *)malloc(sizeof(struct node));
 
   new_node->previous = NULL;
-  new_node->val      = value;
-  new_node->next     = NULL;
+  new_node->val = value;
+  new_node->next = NULL;
 
   return new_node;
 }
 
-struct doubly_linked_list* initialize_list()
+struct doubly_linked_list *initialize_list()
 {
-  struct doubly_linked_list* new_list = (struct doubly_linked_list*) malloc(sizeof(struct doubly_linked_list));
+  struct doubly_linked_list *new_list = (struct doubly_linked_list *)malloc(sizeof(struct doubly_linked_list));
 
   new_list->head = NULL;
   new_list->lenght = 0;
@@ -38,11 +37,11 @@ struct doubly_linked_list* initialize_list()
   return new_list;
 }
 
-void print_elements(struct doubly_linked_list* list)
+void print_elements(struct doubly_linked_list *list)
 {
-  if(list->head != NULL)
+  if (list->head != NULL)
   {
-    struct node* aux = list->head;
+    struct node *aux = list->head;
 
     printf("[");
 
@@ -51,7 +50,7 @@ void print_elements(struct doubly_linked_list* list)
       printf("%d", aux->val);
       aux = aux->next;
 
-      if(aux != NULL)
+      if (aux != NULL)
       {
         printf(", ");
       }
@@ -65,11 +64,11 @@ void print_elements(struct doubly_linked_list* list)
   }
 }
 
-void insert_element_at_end(struct doubly_linked_list* list, int value)
+void insert_element_at_end(struct doubly_linked_list *list, int value)
 {
   struct node *new_node = initialize_node(value);
 
-  if(list->head == NULL)
+  if (list->head == NULL)
   {
     list->head = new_node;
     list->tail = new_node;
@@ -89,14 +88,14 @@ void insert_element_at_start(struct doubly_linked_list *list, int value)
   struct node *new_node = initialize_node(value);
 
   new_node->next = list->head;
-  list->head     = new_node;
+  list->head = new_node;
 
   list->lenght++;
 }
 
 void insert_element_in_position(struct doubly_linked_list *list, int value, int position)
 {
-  if(position >= 0 && position < list->lenght)
+  if (position >= 0 && position < list->lenght)
   {
     struct node *new_node = initialize_node(value), *prev, *curr;
     curr = list->head;
@@ -119,7 +118,7 @@ void insert_element_in_position(struct doubly_linked_list *list, int value, int 
 
 int get_element(struct doubly_linked_list *list, int position)
 {
-  if(position >= 0 && position < list->lenght)
+  if (position >= 0 && position < list->lenght)
   {
     struct node *new_node = list->head;
 
@@ -127,18 +126,18 @@ int get_element(struct doubly_linked_list *list, int position)
     {
       new_node = new_node->next;
     }
-    
+
     return new_node->val;
   }
 }
 
 void remove_element_in_position(struct doubly_linked_list *list, int position)
 {
-  if(position >= 0 && position < list->lenght)
+  if (position >= 0 && position < list->lenght)
   {
     struct node *temp;
 
-    if(position == 0)
+    if (position == 0)
     {
       temp = list->head;
       list->head = list->head->next;
@@ -146,7 +145,7 @@ void remove_element_in_position(struct doubly_linked_list *list, int position)
 
       free(temp);
     }
-    else if(position == list->lenght - 1)
+    else if (position == list->lenght - 1)
     {
       temp = list->tail;
       list->tail = list->tail->previous;
@@ -156,7 +155,7 @@ void remove_element_in_position(struct doubly_linked_list *list, int position)
     }
     else
     {
-      struct node* curr = list->head;
+      struct node *curr = list->head;
 
       for (int i = 0; i < position; i++)
       {
@@ -172,7 +171,7 @@ void remove_element_in_position(struct doubly_linked_list *list, int position)
   }
 }
 
-void reverse(struct doubly_linked_list *list)
+void reverse(struct doubly_linked_list *list) 
 {
   struct node *temp;
   struct node *curr = list->head;

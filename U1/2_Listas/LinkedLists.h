@@ -161,7 +161,7 @@ void reverse(struct linked_list *list)
   struct node *curr = list->head;
   struct node *next = NULL;
 
-  while (curr != NULL) 
+  while(curr != NULL) 
   {
       next = curr->next;
       curr->next = prev;
