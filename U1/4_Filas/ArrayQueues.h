@@ -24,32 +24,28 @@ struct array_queue *initialize(int size)
   return queue;
 }
 
-//Ler o elemento da frente da fila
-int peek(struct array_queue *queue)//@audit-info
+int peek(struct array_queue *queue)
 {
   return queue->vector[queue->front];
 }
 
-//Contar os elementos de uma fila: 
-int len(struct array_queue *queue)//@audit-info
+int len(struct array_queue *queue)
 {
   return queue->lenght;
 }
 
-//Perguntar se a fila está vazia: 
-bool empty(struct array_queue *queue)//@audit-info
+
+bool empty(struct array_queue *queue)
 {
   return (queue->rear == -1 && queue->front == -1);
 }
 
-//Perguntar se a fila está cheia (caso haja limite):
-bool full(struct array_queue *queue)//@audit-info
+bool full(struct array_queue *queue)
 {
   return (queue->lenght == queue->size);
 }
 
-//Remover um elemento do frente da fila
-void dequeue(struct array_queue *queue)//@audit
+void dequeue(struct array_queue *queue)
 {
   if(!empty(queue))
   {
@@ -64,8 +60,7 @@ void dequeue(struct array_queue *queue)//@audit
   }
 }
 
-//Inserir um elemento na traseira da fila
-void enqueue(struct array_queue *queue, int value)//@audit
+void enqueue(struct array_queue *queue, int value)
 { 
   if(queue->front == -1)
   {
