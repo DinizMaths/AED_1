@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "stdio.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "arrayqueues.h": "c"
   }
 }
