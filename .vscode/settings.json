@@ -2,6 +2,7 @@
   "files.associations": {
     "stdio.h": "c",
     "stdlib.h": "c",
-    "arrayqueues.h": "c"
+    "arrayqueues.h": "c",
+    "type_traits": "c"
   }
 }
