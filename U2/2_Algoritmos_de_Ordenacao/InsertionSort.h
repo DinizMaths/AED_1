@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
-
-struct double_ended_queue {
-  
-};
+void insertion
